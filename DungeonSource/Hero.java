@@ -14,12 +14,12 @@
  *
  *  class methods (all are public):
  *    public Hero(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, int damageMin, int damageMax,
-					 double chanceToBlock)
-	  public void readName()
-	  public boolean defend()
-	  public void subtractHitPoints(int hitPoints)
-	  public void battleChoices(DungeonCharacter opponent)
+ double chanceToHit, int damageMin, int damageMax,
+ double chanceToBlock)
+ public void readName()
+ public boolean defend()
+ public void subtractHitPoints(int hitPoints)
+ public void battleChoices(DungeonCharacter opponent)
 
  * Copyright:    Copyright (c) 2001
  * Company:
@@ -30,97 +30,128 @@
 
 public abstract class Hero extends DungeonCharacter
 {
-	protected double chanceToBlock;
-	protected int numTurns;
+    protected double chanceToBlock;
+    protected int numTurns;
+    private String special;
 
-//-----------------------------------------------------------------
+    //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
-  public Hero(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, int damageMin, int damageMax,
-					 double chanceToBlock)
-  {
-	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax);
-	this.chanceToBlock = chanceToBlock;
-	readName();
-  }
+    public Hero(String name, int hitPoints, int attackSpeed,
+                double chanceToHit, int damageMin, int damageMax,
+                double chanceToBlock, String callout, String special)
+    {
+        super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax, callout);
+        this.chanceToBlock = chanceToBlock;
+        this.special = special;
+        readName();
+    }
 
-/*-------------------------------------------------------
-readName obtains a name for the hero from the user
+    /*-------------------------------------------------------
+    readName obtains a name for the hero from the user
 
-Receives: nothing
-Returns: nothing
+    Receives: nothing
+    Returns: nothing
 
-This method calls: nothing
-This method is called by: hero constructor
----------------------------------------------------------*/
-  public void readName()
-  {
-		System.out.print("Enter character name: ");
-		name = Keyboard.readString();
-  }//end readName method
+    This method calls: nothing
+    This method is called by: hero constructor
+    ---------------------------------------------------------*/
+    public void readName()
+    {
+        System.out.print("Enter character name: ");
+        name = Keyboard.readString();
+    }//end readName method
 
-/*-------------------------------------------------------
-defend determines if hero blocks attack
+    /*-------------------------------------------------------
+    defend determines if hero blocks attack
 
-Receives: nothing
-Returns: true if attack is blocked, false otherwise
+    Receives: nothing
+    Returns: true if attack is blocked, false otherwise
 
-This method calls: Math.random()
-This method is called by: subtractHitPoints()
----------------------------------------------------------*/
-  public boolean defend()
-  {
-		return Math.random() <= chanceToBlock;
+    This method calls: Math.random()
+    This method is called by: subtractHitPoints()
+    ---------------------------------------------------------*/
+    public boolean defend()
+    {
+        return Math.random() <= chanceToBlock;
 
-  }//end defend method
+    }//end defend method
 
-/*-------------------------------------------------------
-subtractHitPoints checks to see if hero blocked attack, if so a message
-is displayed, otherwise base version of this method is invoked to
-perform the subtraction operation.  This method overrides the method
-inherited from DungeonCharacter promoting polymorphic behavior
+    /*-------------------------------------------------------
+    subtractHitPoints checks to see if hero blocked attack, if so a message
+    is displayed, otherwise base version of this method is invoked to
+    perform the subtraction operation.  This method overrides the method
+    inherited from DungeonCharacter promoting polymorphic behavior
 
-Receives: hit points to subtract
-Returns: nothing
+    Receives: hit points to subtract
+    Returns: nothing
 
-This method calls: defend() or base version of method
-This method is called by: attack() from base class
----------------------------------------------------------*/
-public void subtractHitPoints(int hitPoints)
-	{
-		if (defend())
-		{
-			System.out.println(name + " BLOCKED the attack!");
-		}
-		else
-		{
-			super.subtractHitPoints(hitPoints);
-		}
+    This method calls: defend() or base version of method
+    This method is called by: attack() from base class
+    ---------------------------------------------------------*/
+    public void subtractHitPoints(int hitPoints)
+    {
+        if (defend())
+        {
+            System.out.println(name + " BLOCKED the attack!");
+        }
+        else
+        {
+            super.subtractHitPoints(hitPoints);
+        }
 
 
-	}//end method
+    }//end method
+    public void special(DungeonCharacter opponent){//(V) Refactor #2 added with special to handle cases where the special doesn't need an opponent
+        special();
+    }
+    public void special(){}
 
-/*-------------------------------------------------------
-battleChoices will be overridden in derived classes.  It computes the
-number of turns a hero will get per round based on the opponent that is
-being fought.  The number of turns is reported to the user.  This stuff might
-go better in another method that is invoked from this one...
+    /*-------------------------------------------------------
+    battleChoices will be overridden in derived classes.  It computes the
+    number of turns a hero will get per round based on the opponent that is
+    being fought.  The number of turns is reported to the user.  This stuff might
+    go better in another method that is invoked from this one...
 
-Receives: opponent
-Returns: nothing
+    Receives: opponent
+    Returns: nothing
 
-This method calls: getAttackSpeed()
-This method is called by: external sources
----------------------------------------------------------*/
-	public void battleChoices(DungeonCharacter opponent)
-	{
-	    numTurns = attackSpeed/opponent.getAttackSpeed();
+    This method calls: getAttackSpeed()
+    This method is called by: external sources
+    ---------------------------------------------------------*/
+    public void battleChoices(DungeonCharacter opponent)
+    {
+        int choice;
 
-		if (numTurns == 0)
-			numTurns++;
+        numTurns = attackSpeed/opponent.getAttackSpeed();
 
-		System.out.println("Number of turns this round is: " + numTurns);
+        if (numTurns == 0)
+            numTurns++;
 
-	}//end battleChoices
+        System.out.println("Number of turns this round is: " + numTurns);
+        do //(V) refactor #2, pulled up and generalized for all hero subclasses
+        {
+
+            System.out.println("1. Attack Opponent");
+            System.out.println("2. "+special);
+            System.out.print("Choose an option: ");
+            choice = Keyboard.readInt();
+
+            switch (choice)
+            {
+                case 1: attack(opponent);
+                    break;
+                case 2: special(opponent);
+                    break;
+                default:
+                    System.out.println("invalid choice!");
+            }//end switch
+
+            numTurns--;
+            if (numTurns > 0)
+                System.out.println("Number of turns remaining is: " + numTurns);
+
+        } while(numTurns > 0);
+
+    }//end battleChoices
 
 }//end Hero class
