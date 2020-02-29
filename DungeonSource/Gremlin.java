@@ -9,7 +9,7 @@
  * @version 1.0
  */
 
-public class Gremlin extends Monster
+class Gremlin extends Monster
 {
 
     public Gremlin()

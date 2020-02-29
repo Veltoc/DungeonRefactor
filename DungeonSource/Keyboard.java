@@ -9,7 +9,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Keyboard
+class Keyboard
 {
     //*************  Error Handling Section  **************************
 
@@ -135,7 +135,7 @@ public class Keyboard
     //  Returns true if there are no more tokens to read on the
     //  current input line.
     //-----------------------------------------------------------------
-    public static boolean endOfLine()
+    private static boolean endOfLine()
     {
         return !reader.hasMoreTokens();
     }
@@ -222,7 +222,7 @@ public class Keyboard
         {
             if (token.length() > 1)
             {
-                current_token = token.substring (1, token.length());
+                current_token = token.substring (1);
             } else
                 current_token = null;
 

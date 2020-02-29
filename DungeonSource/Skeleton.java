@@ -9,7 +9,7 @@
  * @version 1.0
  */
 
-public class Skeleton extends Monster
+class Skeleton extends Monster
 {
 
     public Skeleton()

@@ -33,14 +33,15 @@
  * @version 1.0
  */
 
-public abstract class DungeonCharacter implements Comparable
+abstract class DungeonCharacter implements Comparable
 {
 
-    protected String name;
-    protected int hitPoints;
-    protected int attackSpeed;
-    protected double chanceToHit;
-    protected int damageMin, damageMax;
+    String name;
+    int hitPoints;
+    int attackSpeed;
+    private double chanceToHit;
+    private int damageMin;
+    private int damageMax;
     private String callout;
 
     public int compareTo(Object o)//unused
@@ -51,8 +52,8 @@ public abstract class DungeonCharacter implements Comparable
     //-----------------------------------------------------------------
 //explicit constructor to initialize instance variables -- it is called
 // by derived classes
-    public DungeonCharacter(String name, int hitPoints, int attackSpeed,
-                            double chanceToHit, int damageMin, int damageMax, String callout)
+    DungeonCharacter(String name, int hitPoints, int attackSpeed,
+                     double chanceToHit, int damageMin, int damageMax, String callout)
     {
 
         this.name = name;
@@ -72,12 +73,12 @@ public abstract class DungeonCharacter implements Comparable
     }//end getName
 
     //-----------------------------------------------------------------
-    public int getHitPoints()
+    private int getHitPoints()
     {
         return hitPoints;
     }//end getHitPoints
     //-----------------------------------------------------------------
-    public int getAttackSpeed()
+    int getAttackSpeed()
     {
         return attackSpeed;
     }//end getAttackSpeed
@@ -92,7 +93,7 @@ public abstract class DungeonCharacter implements Comparable
     This method calls: nothing
     This method is called by: heal method of monsters and Sorceress
     ---------------------------------------------------------*/
-    public void addHitPoints(int hitPoints)
+    void addHitPoints(int hitPoints)
     {
         if (hitPoints <=0)
             System.out.println("Hitpoint amount must be positive.");
@@ -115,7 +116,7 @@ public abstract class DungeonCharacter implements Comparable
     This method calls: nothing
     This method is called by: overridden versions in Hero and Monster
     ---------------------------------------------------------*/
-    public void subtractHitPoints(int hitPoints)
+    void subtractHitPoints(int hitPoints)
     {
         if (hitPoints <0)
             System.out.println("Hitpoint amount must be positive.");

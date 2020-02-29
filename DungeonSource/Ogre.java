@@ -9,7 +9,7 @@
  * @version 1.0
  */
 
-public class Ogre extends Monster
+class Ogre extends Monster
 {
 
     public Ogre()

@@ -10,9 +10,7 @@
  */
 
 
-
-
-public class Warrior extends Hero
+class Warrior extends Hero
 {
 
     public Warrior()

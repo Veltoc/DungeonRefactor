@@ -28,17 +28,17 @@
  */
 
 
-public abstract class Hero extends DungeonCharacter
+abstract class Hero extends DungeonCharacter
 {
-    protected double chanceToBlock;
-    protected int numTurns;
+    private double chanceToBlock;
+    int numTurns;
     private String special;
 
     //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
-    public Hero(String name, int hitPoints, int attackSpeed,
-                double chanceToHit, int damageMin, int damageMax,
-                double chanceToBlock, String callout, String special)
+    Hero(String name, int hitPoints, int attackSpeed,
+         double chanceToHit, int damageMin, int damageMax,
+         double chanceToBlock, String callout, String special)
     {
         super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax, callout);
         this.chanceToBlock = chanceToBlock;
@@ -55,7 +55,7 @@ public abstract class Hero extends DungeonCharacter
     This method calls: nothing
     This method is called by: hero constructor
     ---------------------------------------------------------*/
-    public void readName()
+    private void readName()
     {
         System.out.print("Enter character name: ");
         name = Keyboard.readString();
@@ -70,7 +70,7 @@ public abstract class Hero extends DungeonCharacter
     This method calls: Math.random()
     This method is called by: subtractHitPoints()
     ---------------------------------------------------------*/
-    public boolean defend()
+    private boolean defend()
     {
         return Math.random() <= chanceToBlock;
 
@@ -101,10 +101,10 @@ public abstract class Hero extends DungeonCharacter
 
 
     }//end method
-    public void special(DungeonCharacter opponent){//(V) Refactor #2 added with special to handle cases where the special doesn't need an opponent
+    void special(DungeonCharacter opponent){//(V) Refactor #2 added with special to handle cases where the special doesn't need an opponent
         special();
     }
-    public void special(){}
+    void special(){}
 
     /*-------------------------------------------------------
     battleChoices will be overridden in derived classes.  It computes the

@@ -43,7 +43,7 @@
   Once a battle concludes, the user has the option of repeating the above
 
 */
-public class Dungeon {
+class Dungeon {
     public static void main(String[] args) {
 
         Hero theHero;
@@ -63,7 +63,7 @@ public class Dungeon {
     returns it.  It utilizes a polymorphic reference (Hero) to accomplish
     this task
     ---------------------------------------------------------------------*/
-    public static Hero chooseHero() {
+    private static Hero chooseHero() {
         int choice;
         Hero theHero;//unused
 
@@ -93,7 +93,7 @@ public class Dungeon {
     generateMonster randomly selects a Monster and returns it.  It utilizes
     a polymorphic reference (Monster) to accomplish this task.
     ---------------------------------------------------------------------*/
-    public static Monster generateMonster() {
+    private static Monster generateMonster() {
         int choice;
 
         choice = (int) (Math.random() * 3) + 1;
@@ -118,7 +118,7 @@ public class Dungeon {
     playAgain allows gets choice from user to play another game.  It returns
     true if the user chooses to continue, false otherwise.
     ---------------------------------------------------------------------*/
-    public static boolean playAgain() {
+    private static boolean playAgain() {
         char again;
 
         System.out.println("Play again (y/n)?");
@@ -134,7 +134,7 @@ public class Dungeon {
     goes first, then the Monster.  At the conclusion of each round, the
     user has the option of quitting.
     ---------------------------------------------------------------------*/
-    public static void battle(Hero theHero, Monster theMonster) {
+    private static void battle(Hero theHero, Monster theMonster) {
         char pause = 'p';
         System.out.println(theHero.getName() + " battles " +
                 theMonster.getName());
