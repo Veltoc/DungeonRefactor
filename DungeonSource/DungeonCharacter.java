@@ -33,7 +33,7 @@
  * @version 1.0
  */
 
-abstract class DungeonCharacter implements Comparable
+abstract class DungeonCharacter
 {
 
     String name;
@@ -43,11 +43,6 @@ abstract class DungeonCharacter implements Comparable
     private int damageMin;
     private int damageMax;
     private String callout;
-
-    public int compareTo(Object o)//unused
-    {
-        return 1;//refactor
-    }
 
     //-----------------------------------------------------------------
 //explicit constructor to initialize instance variables -- it is called
