@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Title: Dungeon.java
  * <p>
@@ -44,6 +46,7 @@
 
 */
 class Dungeon {
+    private static Scanner keyboard = new Scanner(System.in);
     public static void main(String[] args) {
 
         Hero theHero;
@@ -71,7 +74,7 @@ class Dungeon {
                 "1. Warrior\n" +
                 "2. Sorceress\n" +
                 "3. Thief");
-        choice = Keyboard.readInt();
+        choice = keyboard.nextInt();
 
         switch (choice) {
             case 1:
@@ -119,12 +122,11 @@ class Dungeon {
     true if the user chooses to continue, false otherwise.
     ---------------------------------------------------------------------*/
     private static boolean playAgain() {
-        char again;
 
         System.out.println("Play again (y/n)?");
-        again = Keyboard.readChar();
+        String again = keyboard.nextLine();
 
-        return (again == 'Y' || again == 'y');
+        return (again.equalsIgnoreCase("y"));
     }//end playAgain method
 
 
@@ -135,13 +137,13 @@ class Dungeon {
     user has the option of quitting.
     ---------------------------------------------------------------------*/
     private static void battle(Hero theHero, Monster theMonster) {
-        char pause = 'p';
+        String pause = "p";
         System.out.println(theHero.getName() + " battles " +
                 theMonster.getName());
         System.out.println("---------------------------------------------");
 
         //do battle
-        while (theHero.isAlive() && theMonster.isAlive() && pause != 'q') {
+        while (theHero.isAlive() && theMonster.isAlive() && pause != "q") {
             //hero goes first
             theHero.battleChoices(theMonster);
 
@@ -151,7 +153,7 @@ class Dungeon {
 
             //let the player bail out if desired
             System.out.print("\n-->q to quit, anything else to continue: ");
-            pause = Keyboard.readChar();
+            pause = keyboard.nextLine();
 
         }//end battle loop
 
