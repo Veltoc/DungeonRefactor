@@ -150,10 +150,10 @@ abstract class Hero extends DungeonCharacter
             }//end switch
 
             numTurns--;
-            if (numTurns > 0)
+            if (numTurns > 0 && opponent.isAlive())
                 System.out.println("Number of turns remaining is: " + numTurns);
 
-        } while(numTurns > 0);
+        } while(numTurns > 0 && opponent.isAlive());
 
     }//end battleChoices
 
