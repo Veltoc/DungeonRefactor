@@ -148,12 +148,13 @@ class Dungeon {
             theHero.battleChoices(theMonster);
 
             //monster's turn (provided it's still alive!)
-            if (theMonster.isAlive())
+            if (theMonster.isAlive()) {
                 theMonster.attack(theHero);
 
-            //let the player bail out if desired
-            System.out.print("\n-->q to quit, anything else to continue: ");
-            pause = keyboard.nextLine();
+	            //let the player bail out if desired
+	            System.out.print("\n-->q to quit, anything else to continue: ");
+	            pause = keyboard.nextLine();
+            }
 
         }//end battle loop
 
