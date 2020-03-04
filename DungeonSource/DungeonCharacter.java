@@ -68,7 +68,7 @@ abstract class DungeonCharacter
     }//end getName
 
     //-----------------------------------------------------------------
-    private int getHitPoints()
+    public int getHitPoints()
     {
         return hitPoints;
     }//end getHitPoints
