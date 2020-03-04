@@ -1,5 +1,3 @@
-
-
 /**
  * Title:
  * Description:
@@ -9,33 +7,14 @@
  * @version 1.0
  */
 
-
 class Sorceress extends Hero
 {
-    private final int MIN_ADD = 25;
-    private final int MAX_ADD = 50;
+	private static final int MIN_ADD = 25;
+	private static final int MAX_ADD = 50;
 
-    //-----------------------------------------------------------------
-    public Sorceress()
-    {
-        super("Sorceress", 75, 5, .7, 25, 50, .3," casts a spell of fireball at ","Increase Hit Points");
-
-
-    }//end constructor
-
-    //-----------------------------------------------------------------
-    public void special()
-    {
-        int hPoints;
-
-        hPoints = (int)(Math.random() * (MAX_ADD - MIN_ADD + 1)) + MIN_ADD;
-        addHitPoints(hPoints);
-        System.out.println(name + " added [" + hPoints + "] points.\n"
-                + "Total hit points remaining are: "
-                + hitPoints);
-        System.out.println();
-
-    }//end special method
-
-
-}//end class
+	//-----------------------------------------------------------------
+	public Sorceress()
+	{
+		super("Sorceress", 75, 5, .7, 25, 50, .3," casts a spell of fireball at ", new SpecialCureWounds(MIN_ADD, MAX_ADD));
+	}
+}
