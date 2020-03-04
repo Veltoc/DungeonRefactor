@@ -10,7 +10,7 @@
  */
 
 
-abstract class Monster extends DungeonCharacter
+class Monster extends DungeonCharacter
 {
     private double chanceToHeal;
     private int minHeal;
