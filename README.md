@@ -109,7 +109,7 @@ Hero:
 
 		public void special(DungeonCharacter opponent){special();}
    		public void special(){}
-- (M) Refactor #8: Create builder for monsters and heroes. Instead of building with constructors, using the builder pattern to create our hero and monster subclasses. After refactor 1,2,7 the only thing left was the constructor
+- (M) Refactor #8: Create factory for monsters and heroes. Instead of creating with constructors, using the simple factory pattern to create our hero and monster subclasses. After refactor 1,2,7 the only thing left was the constructor
 Ogre: 
 
 		public Ogre() {
@@ -146,3 +146,15 @@ Warrior:
 			super("Warrior", 125, 4, .8, 35, 60, .2);
  	   }//end constructor
 
+-(V) Refactor #9 There was a considerable overdose of comments, sized the blocks down to simple descriptions, and removed stuff like "end constructor" that are just unnecessary.
+
+Ex from Hero:
+
+		 /*-------------------------------------------------------
+    readName obtains a name for the hero from the user
+    Receives: nothing
+    Returns: nothing
+    This method calls: nothing
+    This method is called by: hero constructor
+    ---------------------------------------------------------*/
+large comment block for a method that just sets name from user input, more lines in the comment than there is code in the method.
