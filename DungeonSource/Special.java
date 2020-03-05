@@ -1,15 +1,12 @@
 
-public interface Special
-{
-	public String getName();
+public interface Special {
+    String getName();
 
-	default public void doSpecial(DungeonCharacter actor, DungeonCharacter target)
-	{
-		doSpecial(actor);
-	}
+    default void doSpecial(DungeonCharacter actor, DungeonCharacter target) {
+        doSpecial(actor);
+    }
 
-	default public void doSpecial(DungeonCharacter actor)
-	{
-		
-	}
+    default void doSpecial(DungeonCharacter actor) {
+
+    }
 }

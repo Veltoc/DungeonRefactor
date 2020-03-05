@@ -2,39 +2,39 @@
 
 /**
  * Title: DungeonCharacter.java
- *
+ * <p>
  * Description: Abstract Base class for inheritance hierarchy for a
- *              role playing game
- *
- *  class variables (all will be directly accessible from derived classes):
- *    name (name of character)
- *    hitPoints (points of damage a character can take before killed)
- *    attackSpeed (how fast the character can attack)
- *    chanceToHit (chance an attack will strike the opponent)
- *    damageMin, damageMax (range of damage the character can inflict on
- *     opponent)
- *
- *  class methods (all are directly accessible by derived classes):
- *    DungeonCharacter(String name, int hitPoints, int attackSpeed,
- double chanceToHit, int damageMin, int damageMax)
- public String getName()
- public int getHitPoints()
- public int getAttackSpeed()
- public void addHitPoints(int hitPoints)
- public void subtractHitPoints(int hitPoints) -- this method will be
- overridden
- public boolean isAlive()
- public void attack(DungeonCharacter opponent) -- this method will be
- overridden
- *
+ * role playing game
+ * <p>
+ * class variables (all will be directly accessible from derived classes):
+ * name (name of character)
+ * hitPoints (points of damage a character can take before killed)
+ * attackSpeed (how fast the character can attack)
+ * chanceToHit (chance an attack will strike the opponent)
+ * damageMin, damageMax (range of damage the character can inflict on
+ * opponent)
+ * <p>
+ * class methods (all are directly accessible by derived classes):
+ * DungeonCharacter(String name, int hitPoints, int attackSpeed,
+ * double chanceToHit, int damageMin, int damageMax)
+ * public String getName()
+ * public int getHitPoints()
+ * public int getAttackSpeed()
+ * public void addHitPoints(int hitPoints)
+ * public void subtractHitPoints(int hitPoints) -- this method will be
+ * overridden
+ * public boolean isAlive()
+ * public void attack(DungeonCharacter opponent) -- this method will be
+ * overridden
+ * <p>
  * Copyright:    Copyright (c) 2001
  * Company:
+ *
  * @author
  * @version 1.0
  */
 
-abstract class DungeonCharacter
-{
+abstract class DungeonCharacter {
 
     String name;
     int hitPoints;
@@ -48,8 +48,7 @@ abstract class DungeonCharacter
 //explicit constructor to initialize instance variables -- it is called
 // by derived classes
     DungeonCharacter(String name, int hitPoints, int attackSpeed,
-                     double chanceToHit, int damageMin, int damageMax, String callout)
-    {
+                     double chanceToHit, int damageMin, int damageMax, String callout) {
 
         this.name = name;
         this.hitPoints = hitPoints;
@@ -62,19 +61,17 @@ abstract class DungeonCharacter
     }//end constructor
 
     //-----------------------------------------------------------------
-    public String getName()
-    {
+    String getName() {
         return name;
     }//end getName
 
     //-----------------------------------------------------------------
-    public int getHitPoints()
-    {
+    int getHitPoints() {
         return hitPoints;
     }//end getHitPoints
+
     //-----------------------------------------------------------------
-    int getAttackSpeed()
-    {
+    int getAttackSpeed() {
         return attackSpeed;
     }//end getAttackSpeed
 
@@ -88,12 +85,10 @@ abstract class DungeonCharacter
     This method calls: nothing
     This method is called by: heal method of monsters and Sorceress
     ---------------------------------------------------------*/
-    void addHitPoints(int hitPoints)
-    {
-        if (hitPoints <=0)
+    void addHitPoints(int hitPoints) {
+        if (hitPoints <= 0)
             System.out.println("Hitpoint amount must be positive.");
-        else
-        {
+        else {
             this.hitPoints += hitPoints;
             //System.out.println("Remaining Hit Points: " + hitPoints);
 
@@ -111,12 +106,10 @@ abstract class DungeonCharacter
     This method calls: nothing
     This method is called by: overridden versions in Hero and Monster
     ---------------------------------------------------------*/
-    void subtractHitPoints(int hitPoints)
-    {
-        if (hitPoints <0)
+    void subtractHitPoints(int hitPoints) {
+        if (hitPoints < 0)
             System.out.println("Hitpoint amount must be positive.");
-        else if (hitPoints >0)
-        {
+        else if (hitPoints > 0) {
             this.hitPoints -= hitPoints;
             if (this.hitPoints < 0)
                 this.hitPoints = 0;
@@ -142,8 +135,7 @@ abstract class DungeonCharacter
     This method calls: nothing
     This method is called by: unknown (intended for external use)
     ---------------------------------------------------------*/
-    public boolean isAlive()
-    {
+    boolean isAlive() {
         return (hitPoints > 0);
     }//end isAlive method
 
@@ -159,36 +151,28 @@ abstract class DungeonCharacter
     This method is called by: overridden versions of the method in monster and
     hero classes and externally
     ---------------------------------------------------------*/
-    public void attack(DungeonCharacter opponent)
-    {
-        if(!callout.isEmpty()) System.out.println(name + callout + opponent.getName() + ":"); //(V) refactor #1: every class but thief overiddes an attack to print a string, so pushed it up and had thiefs be empty
+    void attack(DungeonCharacter opponent) {
+        if (!callout.isEmpty())
+            System.out.println(name + callout + opponent.getName() + ":"); //(V) refactor #1: every class but thief overiddes an attack to print a string, so pushed it up and had thiefs be empty
         boolean canAttack;
         int damage;
 
         canAttack = Math.random() <= chanceToHit;
 
-        if (canAttack)
-        {
-            damage = (int)(Math.random() * (damageMax - damageMin + 1))
-                    + damageMin ;
+        if (canAttack) {
+            damage = (int) (Math.random() * (damageMax - damageMin + 1))
+                    + damageMin;
             opponent.subtractHitPoints(damage);
-
 
 
             System.out.println();
         }//end if can attack
-        else
-        {
-
+        else {
             System.out.println(getName() + "'s attack on " + opponent.getName() +
                     " failed!");
             System.out.println();
         }//end else
 
     }//end attack method
-
-//-----------------------------------------------------------------
-
-
 
 }//end class Character
