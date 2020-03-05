@@ -2,46 +2,44 @@ import java.util.Scanner;
 
 /**
  * Title: Hero.java
- *
+ * <p>
  * Description: Abstract base class for a hierarchy of heroes.  It is derived
- *  from DungeonCharacter.  A Hero has battle choices: regular attack and a
- *  special skill which is defined by the classes derived from Hero.
- *
- *  class variables (all are directly accessible from derived classes):
- *    chanceToBlock -- a hero has a chance to block an opponents attack
- *    numTurns -- if a hero is faster than opponent, their is a possibility
- *                for more than one attack per round of battle
- *
- *  class methods (all are public):
- *    public Hero(String name, int hitPoints, int attackSpeed,
- double chanceToHit, int damageMin, int damageMax,
- double chanceToBlock)
- public void readName()
- public boolean defend()
- public void subtractHitPoints(int hitPoints)
- public void battleChoices(DungeonCharacter opponent)
-
+ * from DungeonCharacter.  A Hero has battle choices: regular attack and a
+ * special skill which is defined by the classes derived from Hero.
+ * <p>
+ * class variables (all are directly accessible from derived classes):
+ * chanceToBlock -- a hero has a chance to block an opponents attack
+ * numTurns -- if a hero is faster than opponent, their is a possibility
+ * for more than one attack per round of battle
+ * <p>
+ * class methods (all are public):
+ * public Hero(String name, int hitPoints, int attackSpeed,
+ * double chanceToHit, int damageMin, int damageMax,
+ * double chanceToBlock)
+ * public void readName()
+ * public boolean defend()
+ * public void subtractHitPoints(int hitPoints)
+ * public void battleChoices(DungeonCharacter opponent)
+ * <p>
  * Copyright:    Copyright (c) 2001
  * Company:
+ *
  * @author
  * @version 1.0
  */
 
 
-class Hero extends DungeonCharacter
-{
+class Hero extends DungeonCharacter {
     private double chanceToBlock;
-    int numTurns;
+    private int numTurns;
     private Special special;
     private static Scanner keyboard = new Scanner(System.in);
 
 
-    //-----------------------------------------------------------------
-//calls base constructor and gets name of hero from user
+    //calls base constructor and gets name of hero from user
     Hero(int hitPoints, int attackSpeed,
          double chanceToHit, int damageMin, int damageMax,
-         double chanceToBlock, String callout, Special special)
-    {
+         double chanceToBlock, String callout, Special special) {
         super(null, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax, callout);
         this.chanceToBlock = chanceToBlock;
         this.special = special;
@@ -57,15 +55,13 @@ class Hero extends DungeonCharacter
     This method calls: nothing
     This method is called by: hero constructor
     ---------------------------------------------------------*/
-    private void readName()
-    {
+    private void readName() {
         System.out.print("Enter character name: ");
         name = keyboard.next();
     }//end readName method
-    
-    public void addTurn()
-    {
-    	this.numTurns++;
+
+    void addTurn() {
+        this.numTurns++;
     }
 
     /*-------------------------------------------------------
@@ -77,8 +73,7 @@ class Hero extends DungeonCharacter
     This method calls: Math.random()
     This method is called by: subtractHitPoints()
     ---------------------------------------------------------*/
-    private boolean defend()
-    {
+    private boolean defend() {
         return Math.random() <= chanceToBlock;
 
     }//end defend method
@@ -95,27 +90,22 @@ class Hero extends DungeonCharacter
     This method calls: defend() or base version of method
     This method is called by: attack() from base class
     ---------------------------------------------------------*/
-    public void subtractHitPoints(int hitPoints)
-    {
-        if (defend())
-        {
+    public void subtractHitPoints(int hitPoints) {
+        if (defend()) {
             System.out.println(name + " BLOCKED the attack!");
-        }
-        else
-        {
+        } else {
             super.subtractHitPoints(hitPoints);
         }
 
 
     }//end method
-    public void setSpecial(Special special)
-    {
-    	this.special = special;
+
+    public void setSpecial(Special special) {
+        this.special = special;
     }
-    
-    public void special(DungeonCharacter opponent)
-    {
-    	this.special.doSpecial(this, opponent);
+
+    private void special(DungeonCharacter opponent) {
+        this.special.doSpecial(this, opponent);
     }
 
     /*-------------------------------------------------------
@@ -130,11 +120,10 @@ class Hero extends DungeonCharacter
     This method calls: getAttackSpeed()
     This method is called by: external sources
     ---------------------------------------------------------*/
-    public void battleChoices(DungeonCharacter opponent)
-    {
+    void battleChoices(DungeonCharacter opponent) {
         int choice;
 
-        numTurns = attackSpeed/opponent.getAttackSpeed();
+        numTurns = attackSpeed / opponent.getAttackSpeed();
 
         if (numTurns == 0)
             numTurns++;
@@ -148,11 +137,12 @@ class Hero extends DungeonCharacter
             System.out.print("Choose an option: ");
             choice = keyboard.nextInt();
 
-            switch (choice)
-            {
-                case 1: attack(opponent);
+            switch (choice) {
+                case 1:
+                    attack(opponent);
                     break;
-                case 2: special(opponent);
+                case 2:
+                    special(opponent);
                     break;
                 default:
                     System.out.println("invalid choice!");
@@ -162,7 +152,7 @@ class Hero extends DungeonCharacter
             if (numTurns > 0 && opponent.isAlive())
                 System.out.println("Number of turns remaining is: " + numTurns);
 
-        } while(numTurns > 0 && opponent.isAlive());
+        } while (numTurns > 0 && opponent.isAlive());
 
     }//end battleChoices
 
