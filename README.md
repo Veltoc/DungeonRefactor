@@ -10,3 +10,6 @@ refactored:
 - (V) Refactor #3: everything was made public, most could be private or package private. Indecent Exposure code smell 
 - (M) Refactor #4: DungeonCharacter implements Comparable and compareTo, but compareTo is never used - removed Comparable implementation
 - (V) Refactor #5: Keyboard can be replaced with the Scanner utility, also fixes the issue with continue not working on enter
+- (M) Refactor #6: Improved user experience (not continuing turn when monster is dead; not asking to quit after winning; formatting)
+- (M) Refactor #7: Create classes for special abilities (Strategy 'em up)
+- (M) Refactor #8: Create builder for monsters and heroes

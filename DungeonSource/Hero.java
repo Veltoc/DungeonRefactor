@@ -28,24 +28,23 @@ import java.util.Scanner;
  */
 
 
-abstract class Hero extends DungeonCharacter
+class Hero extends DungeonCharacter
 {
     private double chanceToBlock;
     int numTurns;
-    private String special;
-    private Scanner keyboard;
+    private Special special;
+    private static Scanner keyboard = new Scanner(System.in);
 
 
     //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
-    Hero(String name, int hitPoints, int attackSpeed,
+    Hero(int hitPoints, int attackSpeed,
          double chanceToHit, int damageMin, int damageMax,
-         double chanceToBlock, String callout, String special)
+         double chanceToBlock, String callout, Special special)
     {
-        super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax, callout);
+        super(null, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax, callout);
         this.chanceToBlock = chanceToBlock;
         this.special = special;
-        keyboard = new Scanner(System.in);
         readName();
     }
 
@@ -63,6 +62,11 @@ abstract class Hero extends DungeonCharacter
         System.out.print("Enter character name: ");
         name = keyboard.next();
     }//end readName method
+    
+    public void addTurn()
+    {
+    	this.numTurns++;
+    }
 
     /*-------------------------------------------------------
     defend determines if hero blocks attack
@@ -104,10 +108,15 @@ abstract class Hero extends DungeonCharacter
 
 
     }//end method
-    void special(DungeonCharacter opponent){//(V) Refactor #2 added with special to handle cases where the special doesn't need an opponent
-        special();
+    public void setSpecial(Special special)
+    {
+    	this.special = special;
     }
-    void special(){}
+    
+    public void special(DungeonCharacter opponent)
+    {
+    	this.special.doSpecial(this, opponent);
+    }
 
     /*-------------------------------------------------------
     battleChoices will be overridden in derived classes.  It computes the
@@ -135,7 +144,7 @@ abstract class Hero extends DungeonCharacter
         {
 
             System.out.println("1. Attack Opponent");
-            System.out.println("2. "+special);
+            System.out.println("2. " + this.special.getName());
             System.out.print("Choose an option: ");
             choice = keyboard.nextInt();
 
@@ -150,10 +159,10 @@ abstract class Hero extends DungeonCharacter
             }//end switch
 
             numTurns--;
-            if (numTurns > 0)
+            if (numTurns > 0 && opponent.isAlive())
                 System.out.println("Number of turns remaining is: " + numTurns);
 
-        } while(numTurns > 0);
+        } while(numTurns > 0 && opponent.isAlive());
 
     }//end battleChoices
 
