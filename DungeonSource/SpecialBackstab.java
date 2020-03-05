@@ -14,7 +14,7 @@ public class SpecialBackstab implements Special {
             System.out.println("Surprise attack was successful!\n" + hero.getName() + " gets an additional turn.");
             hero.addTurn();
             hero.attack(target);
-        } // end surprise
+        }
         else if (surprise >= .9) {
             System.out.println("Uh oh! " + target.getName() + " saw you and" + " blocked your attack!");
         } else

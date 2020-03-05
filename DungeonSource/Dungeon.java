@@ -15,15 +15,8 @@
  * Finished documenting program version 1.0
  */
 
-/*
- * This class is the driver file for the Heroes and Monsters project. It will do
- * the following:
- *
- * 1. Allow the user to choose a hero 2. Randomly select a monster 3. Allow the
- * hero to battle the monster
- *
- * Once a battle concludes, the user has the option of repeating the above
- *
+/*1. Allow the user to choose a hero 2. Randomly select a monster 3. Allow the
+ * hero to battle the monster 4. allow user to repeat once battle has concluded
  */
 
 import java.util.Scanner;
@@ -49,14 +42,8 @@ class Dungeon {
 
         } while (playAgain());
 
-    }// end main method
-
-    /*-------------------------------------------------------------------
-    chooseHero allows the user to select a hero, creates that hero, and
-    returns it.  It utilizes a polymorphic reference (Hero) to accomplish
-    this task
-    ---------------------------------------------------------------------*/
-    private static Hero chooseHero() {
+    }
+    private static Hero chooseHero() { //handles user selecting a hero
         int choice;
 
         System.out.println("Choose a hero:");
@@ -71,63 +58,42 @@ class Dungeon {
         }
 
         return CharacterCreator.createHero(heroOptions[choice]);
-    }// end chooseHero method
+    }
 
-    /*-------------------------------------------------------------------
-    generateMonster randomly selects a Monster and returns it.  It utilizes
-    a polymorphic reference (Monster) to accomplish this task.
-    ---------------------------------------------------------------------*/
-    private static Monster generateMonster() {
+    private static Monster generateMonster() {//generates a random monster
         int choice = (int) (Math.random() * monsterOptions.length);
         return CharacterCreator.createMonster(monsterOptions[choice]);
-    }// end generateMonster method
+    }
 
-    /*-------------------------------------------------------------------
-    playAgain allows gets choice from user to play another game.  It returns
-    true if the user chooses to continue, false otherwise.
-    ---------------------------------------------------------------------*/
-    private static boolean playAgain() {
+    private static boolean playAgain() {//asks user if they want to play again returning true if they say y (yes)
 
         System.out.println("Play again (y/n)?");
         String again = keyboard.nextLine();
 
         return (again.equalsIgnoreCase("y"));
-    }// end playAgain method
+    }
 
-    /*-------------------------------------------------------------------
-    battle is the actual combat portion of the game.  It requires a Hero
-    and a Monster to be passed in.  Battle occurs in rounds.  The Hero
-    goes first, then the Monster.  At the conclusion of each round, the
-    user has the option of quitting.
-    ---------------------------------------------------------------------*/
-    private static void battle(Hero theHero, Monster theMonster) {
+    private static void battle(Hero theHero, Monster theMonster) {//handles the combat in rounds, asking if user wants to quit each round.
         String pause = "p";
         System.out.println(theHero.getName() + " battles " + theMonster.getName());
         System.out.println("---------------------------------------------");
 
-        // do battle
         while (theHero.isAlive() && theMonster.isAlive() && !pause.equalsIgnoreCase("q")) {
-            // hero goes first
             theHero.battleChoices(theMonster);
 
-            // monster's turn (provided it's still alive!)
             if (theMonster.isAlive()) {
                 theMonster.attack(theHero);
 
-                // let the player bail out if desired
                 System.out.print("\n-->q to quit, anything else to continue: ");
                 pause = keyboard.nextLine();
             }
-
-        } // end battle loop
+        }
 
         if (!theMonster.isAlive())
             System.out.println(theHero.getName() + " was victorious!");
         else if (!theHero.isAlive())
             System.out.println(theHero.getName() + " was defeated :-(");
-        else// both are alive so user quit the game
+        else
             System.out.println("Quitters never win ;-)");
-
-    }// end battle method
-
-}// end Dungeon class
+    }
+}
