@@ -2,15 +2,16 @@
 - (V) Refactor #1: Each class (except thief) overrode attack just to print a line, pushed that up and passed the line at construction to DungeonCharacter to call.
 For example, 
 In Warrior:
-public void attack(DungeonCharacter opponent)
+
+	public void attack(DungeonCharacter opponent)
 	{
 		System.out.println(name + " swings a mighty sword at " +
 							opponent.getName() + ":");
 		super.attack(opponent);
 	}//end override of attack method
-In Sorceress
-	public void attack(DungeonCharacter opponent)
-	{
+In Sorceress:
+	
+	public void attack(DungeonCharacter opponent){
 		System.out.println(name + " casts a spell of fireball at " +
 							opponent.getName() + ":");
 		super.attack(opponent);
@@ -21,22 +22,21 @@ In Sorceress
 
 For example, 
 In Warrior
-public void battleChoices(DungeonCharacter opponent)
+
+	public void battleChoices(DungeonCharacter opponent)
 	{
 		int choice;
-
 		super.battleChoices(opponent);
-
 		do
 		{
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. Crushing Blow on Opponent");
 ...
-switch (choice)
-		    {
-			    case 1: attack(opponent);
-			        break;
-			    case 2: crushingBlow(opponent);
+
+	switch (choice){
+	case 1: attack(opponent);
+	break;
+	case 2: crushingBlow(opponent);...
 where the only change in the class was crushing blow and the method called. so instead made its calls general and part pushed the duplicate code to Hero. slightly redone by refactor 7
 
 
@@ -52,16 +52,14 @@ where the only change in the class was crushing blow and the method called. so i
   
   or dungeonCharacter:
   protected String name;
-	protected int hitPoints;
-	protected int attackSpeed;
-	protected double chanceToHit;
-	protected int damageMin, damageMax;
+  protected int hitPoints;
+  protected int attackSpeed;
+  protected double chanceToHit;
+  rotected int damageMin, damageMax;
   
 - (M) Refactor #4: DungeonCharacter implements Comparable and compareTo, but compareTo is never used - removed Comparable implementation
-
-public abstract class DungeonCharacter implements Comparable
-...
-public int compareTo(Object o)
+	public abstract class DungeonCharacter implements Comparable...
+	public int compareTo(Object o)
 	{
 		return 1;
 	}
@@ -70,20 +68,22 @@ not only was compareTo dead code, if it was in use then it would fail to do its 
 - (V) Refactor #5: Keyboard is a class within the project that does the same job as the Scanner class created in Java 7. With most of it being unused or outdated it is best to replace with Scanner. Doing so also allows us to get a line and allow enter as a key to continue
 
 unused:
-public static int getErrorCount()
-public static void resetErrorCount (int count)
-public static boolean getPrintErrors()
-public static void setPrintErrors
-public static String readWord()
-public static boolean readBoolean()
-public static long readLong()
-public static float readFloat()
-public static double readDouble()
+
+	public static int getErrorCount()
+	public static void resetErrorCount (int count)
+	public static boolean getPrintErrors()
+	public static void setPrintErrors
+	public static String readWord()
+	public static boolean readBoolean()
+	public static long readLong()
+	public static float readFloat()
+	public static double readDouble()
 
 depricated:
-((delimiters.indexOf (token) >= 0) && skip))
-value = (new Double(token)).doubleValue();
-value = (new Float(token)).floatValue();
+
+	((delimiters.indexOf (token) >= 0) && skip))
+	value = (new Double(token)).doubleValue();
+	value = (new Float(token)).floatValue();
 
 - (M) Refactor #6: Improved user experience (not continuing turn when monster is dead; not asking to quit after winning; formatting)
 
