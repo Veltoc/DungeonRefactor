@@ -30,13 +30,11 @@ import java.util.Scanner;
 
 
 class Hero extends DungeonCharacter {
+    private static Scanner keyboard = new Scanner(System.in);
     private double chanceToBlock;
     private int numTurns;
     private Special special;
-    private static Scanner keyboard = new Scanner(System.in);
 
-
-    //calls base constructor and gets name of hero from user
     Hero(int hitPoints, int attackSpeed,
          double chanceToHit, int damageMin, int damageMax,
          double chanceToBlock, String callout, Special special) {
@@ -46,81 +44,34 @@ class Hero extends DungeonCharacter {
         readName();
     }
 
-    /*-------------------------------------------------------
-    readName obtains a name for the hero from the user
-
-    Receives: nothing
-    Returns: nothing
-
-    This method calls: nothing
-    This method is called by: hero constructor
-    ---------------------------------------------------------*/
-    private void readName() {
+    private void readName() {//gets name from user
         System.out.print("Enter character name: ");
         name = keyboard.next();
-    }//end readName method
+    }
 
     void addTurn() {
         this.numTurns++;
     }
 
-    /*-------------------------------------------------------
-    defend determines if hero blocks attack
 
-    Receives: nothing
-    Returns: true if attack is blocked, false otherwise
-
-    This method calls: Math.random()
-    This method is called by: subtractHitPoints()
-    ---------------------------------------------------------*/
-    private boolean defend() {
+    private boolean defend() {//handles if the her blocks the attack
         return Math.random() <= chanceToBlock;
 
-    }//end defend method
+    }
 
-    /*-------------------------------------------------------
-    subtractHitPoints checks to see if hero blocked attack, if so a message
-    is displayed, otherwise base version of this method is invoked to
-    perform the subtraction operation.  This method overrides the method
-    inherited from DungeonCharacter promoting polymorphic behavior
-
-    Receives: hit points to subtract
-    Returns: nothing
-
-    This method calls: defend() or base version of method
-    This method is called by: attack() from base class
-    ---------------------------------------------------------*/
-    public void subtractHitPoints(int hitPoints) {
+    public void subtractHitPoints(int hitPoints) {//handles hero getting attacked
         if (defend()) {
             System.out.println(name + " BLOCKED the attack!");
         } else {
             super.subtractHitPoints(hitPoints);
         }
-
-
-    }//end method
-
-    public void setSpecial(Special special) {
-        this.special = special;
     }
 
     private void special(DungeonCharacter opponent) {
         this.special.doSpecial(this, opponent);
     }
 
-    /*-------------------------------------------------------
-    battleChoices will be overridden in derived classes.  It computes the
-    number of turns a hero will get per round based on the opponent that is
-    being fought.  The number of turns is reported to the user.  This stuff might
-    go better in another method that is invoked from this one...
-
-    Receives: opponent
-    Returns: nothing
-
-    This method calls: getAttackSpeed()
-    This method is called by: external sources
-    ---------------------------------------------------------*/
-    void battleChoices(DungeonCharacter opponent) {
+    void battleChoices(DungeonCharacter opponent) {//handles heros turn choices each round
         int choice;
 
         numTurns = attackSpeed / opponent.getAttackSpeed();
@@ -129,8 +80,7 @@ class Hero extends DungeonCharacter {
             numTurns++;
 
         System.out.println("Number of turns this round is: " + numTurns);
-        do //(V) refactor #2, pulled up and generalized for all hero subclasses
-        {
+        do {
 
             System.out.println("1. Attack Opponent");
             System.out.println("2. " + this.special.getName());
@@ -146,14 +96,12 @@ class Hero extends DungeonCharacter {
                     break;
                 default:
                     System.out.println("invalid choice!");
-            }//end switch
+            }
 
             numTurns--;
             if (numTurns > 0 && opponent.isAlive())
                 System.out.println("Number of turns remaining is: " + numTurns);
 
         } while (numTurns > 0 && opponent.isAlive());
-
-    }//end battleChoices
-
-}//end Hero class
+    }
+}
