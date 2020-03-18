@@ -7,34 +7,32 @@ class Hero extends DungeonCharacter {
     private double chanceToBlock;
     private int numTurns;
     private Special special;
-    private int visionRadius;
     
     private int healthPotions;
     private int visionPotions;
     private int pillarsFound;
+    private int visionRadius;
     
-    Hero(int hitPoints, int attackSpeed,
-         double chanceToHit, int damageMin, int damageMax,
-         double chanceToBlock, String callout, Special special)
+    Hero(int hitPoints, double chanceToBlock,
+        String attackType, String warcry, Special special)
     {
-        super(null, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax, callout);
+        super(null, hitPoints, attackType, warcry);
         
         this.chanceToBlock = chanceToBlock;
         this.special = special;
-        this.visionRadius = 0;
+        readName();
         
         this.healthPotions = 0;
         this.visionPotions = 0;
         this.pillarsFound = 0;
-        
-        readName();
+        this.visionRadius = 0;
     }
     
 
     @Override
     public String toString() {
         return String.format("Name: %s%nHealth Potions: %d%nVision Potions: %d%nPillars Found: %d",
-            this.name, this.healthPotions, this.visionPotions, this.pillarsFound);
+            this.getName(), this.healthPotions, this.visionPotions, this.pillarsFound);
     }
     
     public void addHealthPotion()
@@ -99,7 +97,7 @@ class Hero extends DungeonCharacter {
     private void readName()
     {
         System.out.print("Enter character name: ");
-        name = keyboard.nextLine();
+        this.setName(keyboard.nextLine());
     }
     
     void addTurn()
@@ -115,7 +113,7 @@ class Hero extends DungeonCharacter {
     public void subtractHitPoints(int hitPoints)
     {
         if (defend()) {
-            System.out.println(name + " blocked the damage!");
+            System.out.println(this.getName() + " blocked the damage!");
         } else {
             super.subtractHitPoints(hitPoints);
         }
@@ -134,7 +132,7 @@ class Hero extends DungeonCharacter {
     void battleChoices(DungeonCharacter opponent)
     {
         int choice;
-        this.numTurns = attackSpeed / opponent.getAttackSpeed();
+        this.numTurns = this.getAttackSpeed() / opponent.getAttackSpeed();
         if (this.numTurns == 0)
             this.numTurns++;
 

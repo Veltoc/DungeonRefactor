@@ -43,13 +43,15 @@ class DungeonAdventure
                 } else if(action.equals("admin")){//to allow for testing, and by project requirements
                     theHero.addHealthPotion();
                     theHero.addVisionPotion();
-                    System.out.println(dungeon.printDungeon(-1));
+                    System.out.println(dungeon.toString());
                 } else {
                 	System.out.println("Invalid action!");
                 }
                 
                 keyboard.nextLine(); // Clearing buffer
             }
+            
+            System.out.println(dungeon.printDungeon(-1));
         } while(playAgain());
     }// end main method
     

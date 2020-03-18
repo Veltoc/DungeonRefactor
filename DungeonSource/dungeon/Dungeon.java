@@ -19,7 +19,8 @@ public class Dungeon {
     @Override
     public String toString()
     {
-        return printDungeon(-1);
+        return String.format("Dungeon:%n%sCurrent Room: (%d, %d)",
+            printDungeon(-1), this.currentRoom.getX(), this.currentRoom.getY());
     }
     
     public void createDungeon()
