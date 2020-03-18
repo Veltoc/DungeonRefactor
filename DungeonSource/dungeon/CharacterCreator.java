@@ -9,6 +9,20 @@ class CharacterCreator {
         Special special;
         
         switch (hero) {
+            case "Alchemist":
+                hp = 100;
+                blockChance = .4;
+                attackType = "fast";
+                warcry = "throws a bomb near";
+                special = new SpecialExplosion(.3, 60, 80);
+                break;
+            case "Duelist":
+                hp = 80;
+                blockChance = .4;
+                attackType = "normal";
+                warcry = "slashes a rapier at";
+                special = new SpecialQuickAttack();
+                break;
             case "Sorceress":
                 hp = 75;
                 blockChance = .3;
@@ -27,7 +41,7 @@ class CharacterCreator {
                 hp = 125;
                 blockChance = .2;
                 attackType = "heavy";
-                warcry = "swings a mighty sword at";
+                warcry = "swings a mighty sword toward";
                 special = new SpecialCrushingBlow(.4);
                 break;
             default:
@@ -49,6 +63,15 @@ class CharacterCreator {
         String warcry;
         
         switch (monster) {
+            case "Drow":
+                name = "Drizzt the Drow";
+                hp = 80;
+                healChance = .3;
+                minHeal = 25;
+                maxHeal = 45;
+                attackType = "fast";
+                warcry = "fires an arrow at";
+                break;
             case "Gremlin":
                 name = "Gnarltooth the Gremlin";
                 hp = 70;
@@ -75,6 +98,15 @@ class CharacterCreator {
                 maxHeal = 50;
                 attackType = "normal";
                 warcry = "slices his rusty blade at";
+                break;
+            case "Slime":
+                name = "Jerry the Slime";
+                hp = 100;
+                healChance = 1;
+                minHeal = 10;
+                maxHeal = 30;
+                attackType = "normal";
+                warcry = "swallows";
                 break;
             default:
                 System.out.println("Unknown monster!");

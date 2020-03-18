@@ -69,7 +69,7 @@ abstract class DungeonCharacter
     public void attack(DungeonCharacter opponent)
     {
         if (!this.warcry.isEmpty()) {
-            System.out.printf("%n%s %s %s:%n",
+            System.out.printf("%s %s %s:%n",
                 this.name, this.warcry, opponent.getName());
         }
         

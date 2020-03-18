@@ -5,10 +5,10 @@ class DungeonAdventure
 {
     private static Scanner keyboard = new Scanner(System.in);
     private static String[] heroOptions = {
-            "Warrior", "Sorceress", "Thief"
+            "Warrior", "Sorceress", "Thief", "Alchemist", "Duelist"
     };
     private static String[] monsterOptions = {
-            "Gremlin", "Ogre", "Skeleton"
+            "Gremlin", "Ogre", "Skeleton", "Slime", "Drow"
     };
     private static Dungeon dungeon;
     private static Hero theHero;
