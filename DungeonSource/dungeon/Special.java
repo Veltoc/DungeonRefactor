@@ -1,6 +1,10 @@
 package dungeon;
 
-public interface Special {
+import java.io.Serializable;
+
+public interface Special
+extends Serializable
+{
     String getName();
 
     default void doSpecial(DungeonCharacter actor, DungeonCharacter target) {

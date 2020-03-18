@@ -1,6 +1,11 @@
 package dungeon;
 
-public class Attack {
+import java.io.Serializable;
+
+public class Attack
+implements Serializable
+{
+	private static final long serialVersionUID = 1L;
 	private static final Attack[] ATTACKS = {
 		new Attack(.75, 25, 50, 5), // Normal
 		new Attack(.66, 40, 70, 4), // Heavy

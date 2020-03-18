@@ -1,4 +1,10 @@
 package dungeon;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 class DungeonAdventure
@@ -15,10 +21,22 @@ class DungeonAdventure
     
     public static void main(String[] args)
     {
+        dungeon = null;
+        
+        // Game loop
         do {
-            theHero = chooseHero();
-            introduction();
-            dungeon = new Dungeon();
+        	// Loading a save
+            System.out.print("Do you want to load a save? (y/n) ");
+            if (keyboard.nextLine().toLowerCase().charAt(0) == 'y') {
+                loadGame();
+            }
+            
+            // Checking if loaded save
+            if (dungeon == null) {
+                theHero = chooseHero();
+                introduction();
+                dungeon = new Dungeon();
+            }
             
             // Displaying initial view
             System.out.println(dungeon.printDungeon(theHero.getVision()));
@@ -39,13 +57,15 @@ class DungeonAdventure
                 } else if (action.equals("move")) {
                     quit = move(keyboard.next().toLowerCase());
                 } else if (action.equals("inv")) {
-                	System.out.println(theHero);
-                } else if(action.equals("admin")){//to allow for testing, and by project requirements
+                    System.out.println(theHero);
+                } else if (action.equals("admin")) {//to allow for testing, and by project requirements
                     theHero.addHealthPotion();
                     theHero.addVisionPotion();
                     System.out.println(dungeon.toString());
+                } else if (action.equals("save")) {
+                    saveGame();
                 } else {
-                	System.out.println("Invalid action!");
+                    System.out.println("Invalid action!");
                 }
                 
                 keyboard.nextLine(); // Clearing buffer
@@ -160,7 +180,8 @@ class DungeonAdventure
                 "You can drink potions with 'drink' followed by 'V' or 'vision' for a vision potion and 'H' or 'health' for health potion\n" +
                 "For example, 'drink health'.\nYou can move with 'move' followed by the direction.\n" +
                 "You can use the first letter or the full name of the cardinal direction. For example, 'move north'.\n" +
-                "You will only be able to move outside of combat.");
+                "You will only be able to move outside of combat.\n\n" +
+                "Additionally, you can save your progress with 'save'");
         
         System.out.print("Press RETURN when you are ready to begin");
         keyboard.nextLine();
@@ -217,6 +238,46 @@ class DungeonAdventure
         // Displaying results
         if (theHero.isAlive()) {
             System.out.println(theHero.getName() + " was victorious!");
+        }
+    }
+    
+    private static void saveGame()
+    {
+        try {
+            File file = new File(theHero.getName() + "_save.dgn");
+            
+            // Writing to file
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(dungeon);
+            out.writeObject(theHero);
+            out.close();
+            
+        } catch (Exception e) {
+            System.out.println(e);
+            return;
+        }
+    }
+    
+    private static void loadGame()
+    {
+        // Getting filename
+        System.out.print("Character Name: ");
+        String name = keyboard.nextLine();
+        
+        try {
+            File file = new File(name + "_save.dgn");
+            
+            // Reading file
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
+            dungeon = ((Dungeon) input.readObject());
+            theHero = ((Hero) input.readObject());
+            input.close();
+        } catch (FileNotFoundException e) {
+            System.out.printf("Couldn't find a save for %s. Starting default game.%n", name);
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
         }
     }
 }

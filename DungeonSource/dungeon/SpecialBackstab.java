@@ -1,6 +1,8 @@
 package dungeon;
 
 public class SpecialBackstab implements Special {
+    private static final long serialVersionUID = 1L;
+
     @Override
     public String getName() {
         return "Backstab";

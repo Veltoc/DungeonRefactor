@@ -1,7 +1,10 @@
 package dungeon;
 
-class Monster extends DungeonCharacter
+class Monster
+extends DungeonCharacter
 {
+    private static final long serialVersionUID = 1L;
+    
     private double chanceToHeal;
     private int minHeal;
     private int maxHeal;

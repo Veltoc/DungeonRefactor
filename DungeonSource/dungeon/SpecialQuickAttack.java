@@ -1,6 +1,7 @@
 package dungeon;
 
 public class SpecialQuickAttack implements Special {
+    private static final long serialVersionUID = 1L;
     private int uses;
     
     public SpecialQuickAttack()

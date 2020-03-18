@@ -1,8 +1,13 @@
 package dungeon;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Dungeon {
+public class Dungeon
+implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+    
     static final int YSIZE = 5;
     static final int XSIZE = 5;
     

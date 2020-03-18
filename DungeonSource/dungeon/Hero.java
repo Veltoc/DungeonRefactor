@@ -1,7 +1,10 @@
 package dungeon;
 import java.util.Scanner;
 
-class Hero extends DungeonCharacter {
+class Hero
+extends DungeonCharacter
+{
+    private static final long serialVersionUID = 1L;
     private static Scanner keyboard = new Scanner(System.in);
     
     private double chanceToBlock;
@@ -28,7 +31,6 @@ class Hero extends DungeonCharacter {
         this.visionRadius = 0;
     }
     
-
     @Override
     public String toString() {
         return String.format("Name: %s%nHealth Potions: %d%nVision Potions: %d%nPillars Found: %d",

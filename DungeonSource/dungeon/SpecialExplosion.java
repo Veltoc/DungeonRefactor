@@ -1,6 +1,7 @@
 package dungeon;
 
 public class SpecialExplosion implements Special {
+    private static final long serialVersionUID = 1L;
     private double chance;
     private int minDamage;
     private int maxDamage;

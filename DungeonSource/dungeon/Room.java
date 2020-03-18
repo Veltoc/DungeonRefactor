@@ -1,10 +1,14 @@
 package dungeon;
+import java.io.Serializable;
 import java.util.ArrayList;
 /*
 extra idea: make it a maze, along with a system to check if the exit is reachable using recusion. add a check for if a room has been checked to speed it up
  */
 
-public class Room {
+public class Room
+implements Serializable
+{
+    private static final long serialVersionUID = 1L;
     private static final char[] POS_ITEMS = {'P', 'V', 'H', 'X'};
     
     private int xPosition;

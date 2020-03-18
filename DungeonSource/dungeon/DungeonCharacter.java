@@ -1,7 +1,12 @@
 package dungeon;
 
+import java.io.Serializable;
+
 abstract class DungeonCharacter
+implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+    
     private String name;
     private int hitPoints;
     private Attack attack;
@@ -29,11 +34,6 @@ abstract class DungeonCharacter
     public int getHitPoints()
     {
         return this.hitPoints;
-    }
-    
-    public int getAttackSpeed()
-    {
-        return this.attack.getAttackSpeed();
     }
     
     public void addHitPoints(int hitPoints)
@@ -64,6 +64,26 @@ abstract class DungeonCharacter
     public boolean isAlive()
     {
         return this.hitPoints > 0;
+    }
+    
+    public int getAttackSpeed()
+    {
+        return this.attack.getAttackSpeed();
+    }
+    
+    protected String getWarcry()
+    {
+        return this.warcry;
+    }
+    
+    protected Attack getAttack()
+    {
+    	return this.attack;
+    }
+    
+    protected void setAttack(Attack atk)
+    {
+    	this.attack = atk;
     }
     
     public void attack(DungeonCharacter opponent)
