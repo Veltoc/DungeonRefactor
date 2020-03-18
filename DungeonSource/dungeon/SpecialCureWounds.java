@@ -1,5 +1,7 @@
+package dungeon;
 
 public class SpecialCureWounds implements Special {
+    private static final long serialVersionUID = 1L;
     private int minHealth;
     private int maxHealth;
 
