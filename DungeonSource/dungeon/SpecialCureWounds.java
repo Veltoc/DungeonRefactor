@@ -1,3 +1,4 @@
+package dungeon;
 
 public class SpecialCureWounds implements Special {
     private int minHealth;

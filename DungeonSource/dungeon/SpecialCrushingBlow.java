@@ -1,3 +1,4 @@
+package dungeon;
 
 public class SpecialCrushingBlow implements Special {
     private double chance;

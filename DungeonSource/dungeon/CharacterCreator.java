@@ -1,3 +1,4 @@
+package dungeon;
 
 class CharacterCreator {
     static Hero createHero(String hero) {

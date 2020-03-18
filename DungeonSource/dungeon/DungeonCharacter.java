@@ -1,3 +1,4 @@
+package dungeon;
 /**
  * Title: DungeonCharacter.java
  * <p>

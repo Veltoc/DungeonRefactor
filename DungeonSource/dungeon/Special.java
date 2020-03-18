@@ -1,3 +1,4 @@
+package dungeon;
 
 public interface Special {
     String getName();
