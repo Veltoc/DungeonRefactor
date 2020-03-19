@@ -1,9 +1,11 @@
+package dungeon;
 
 public class SpecialCureWounds implements Special {
+    private static final long serialVersionUID = 1L;
     private int minHealth;
     private int maxHealth;
 
-    SpecialCureWounds(int min, int max) {
+    public SpecialCureWounds(int min, int max) {
         this.minHealth = min;
         this.maxHealth = max;
     }

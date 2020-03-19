@@ -1,8 +1,10 @@
+package dungeon;
 
 public class SpecialCrushingBlow implements Special {
+    private static final long serialVersionUID = 1L;
     private double chance;
 
-    SpecialCrushingBlow(double chance) {
+    public SpecialCrushingBlow(double chance) {
         this.chance = chance;
     }
 
