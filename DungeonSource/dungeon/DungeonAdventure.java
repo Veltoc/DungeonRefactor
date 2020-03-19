@@ -299,7 +299,7 @@ public class DungeonAdventure//made public to be able to unit test
         if (theHero.isAlive()) {
             System.out.println(theHero.getName() + " was victorious!");
             if (Math.random() <= .1) {
-                System.out.println("You found a health potion of the monsters corpse");
+                System.out.println("You found a health potion on the monster's corpse!");
                 theHero.addHealthPotion();
             }
         }

@@ -170,4 +170,14 @@ public class Hero extends DungeonCharacter//made public to unit test
                 System.out.println("Number of turns remaining is: " + numTurns);
         }
     }
+
+	public double getBlockChance() {
+		// Exists so unit tests can validate
+		return this.chanceToBlock;
+	}
+
+	public Special getSpecial() {
+		// Exists so unit tests can validate
+		return this.special;
+	}
 }

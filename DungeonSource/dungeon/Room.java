@@ -17,7 +17,7 @@ implements Serializable
     private char symbol;
     private ArrayList<Character> items;
     
-    Room(int x, int y, char roomType)
+    public Room(int x, int y, char roomType)
     {
         this.xPosition = x;
         this.yPosition = y;

@@ -68,15 +68,17 @@ implements Serializable
     
     public int getAttackSpeed()
     {
+    	// Public so unit tests can validate
         return this.attack.getAttackSpeed();
     }
     
-    protected String getWarcry()
+    public String getWarcry()
     {
+    	// Public so unit tests can validate
         return this.warcry;
     }
     
-    protected Attack getAttack()
+    public Attack getAttack()
     {
     	return this.attack;
     }

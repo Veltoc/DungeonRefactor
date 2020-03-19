@@ -91,7 +91,7 @@ class CreatorTest
 		testMonster = CharacterCreator.createMonster("Drow");
 		assertEquals("Drizzt the Drow", testMonster.getName());
 		assertEquals(80, testMonster.getHitPoints());
-		assertEquals(.3, testMonster.getBlockChance());
+		assertEquals(.3, testMonster.getHealChance());
 		assertEquals(25, testMonster.getMinHeal());
 		assertEquals(45, testMonster.getMaxHeal());
 		assertEquals(Attack.getAttack("fast"), testMonster.getAttack());
@@ -104,7 +104,7 @@ class CreatorTest
 		testMonster = CharacterCreator.createMonster("Gremlin");
 		assertEquals("Gnarltooth the Gremlin", testMonster.getName());
 		assertEquals(70, testMonster.getHitPoints());
-		assertEquals(.4, testMonster.getBlockChance());
+		assertEquals(.4, testMonster.getHealChance());
 		assertEquals(20, testMonster.getMinHeal());
 		assertEquals(40, testMonster.getMaxHeal());
 		assertEquals(Attack.getAttack("fast"), testMonster.getAttack());
@@ -117,7 +117,7 @@ class CreatorTest
 		testMonster = CharacterCreator.createMonster("Ogre");
 		assertEquals("Oscar the Ogre", testMonster.getName());
 		assertEquals(200, testMonster.getHitPoints());
-		assertEquals(.1, testMonster.getBlockChance());
+		assertEquals(.1, testMonster.getHealChance());
 		assertEquals(30, testMonster.getMinHeal());
 		assertEquals(50, testMonster.getMaxHeal());
 		assertEquals(Attack.getAttack("heavy"), testMonster.getAttack());
@@ -130,7 +130,7 @@ class CreatorTest
 		testMonster = CharacterCreator.createMonster("Skeleton");
 		assertEquals("Sargath the Skeleton", testMonster.getName());
 		assertEquals(100, testMonster.getHitPoints());
-		assertEquals(.3, testMonster.getBlockChance());
+		assertEquals(.3, testMonster.getHealChance());
 		assertEquals(30, testMonster.getMinHeal());
 		assertEquals(50, testMonster.getMaxHeal());
 		assertEquals(Attack.getAttack("normal"), testMonster.getAttack());
@@ -143,7 +143,7 @@ class CreatorTest
 		testMonster = CharacterCreator.createMonster("Slime");
 		assertEquals("Jerry the Slime", testMonster.getName());
 		assertEquals(100, testMonster.getHitPoints());
-		assertEquals(1, testMonster.getBlockChance());
+		assertEquals(1, testMonster.getHealChance());
 		assertEquals(10, testMonster.getMinHeal());
 		assertEquals(30, testMonster.getMaxHeal());
 		assertEquals(Attack.getAttack("normal"), testMonster.getAttack());

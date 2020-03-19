@@ -32,4 +32,19 @@ public class Monster extends DungeonCharacter//made public to unit test
         super.subtractHitPoints(hitPoints);
         heal();
     }
+
+	public double getHealChance() {
+		// Exists so unit tests can validate
+		return this.chanceToHeal;
+	}
+
+	public int getMinHeal() {
+		// Exists so unit tests can validate
+		return this.minHeal;
+	}
+
+	public int getMaxHeal() {
+		// Exists so unit tests can validate
+		return this.maxHeal;
+	}
 }
