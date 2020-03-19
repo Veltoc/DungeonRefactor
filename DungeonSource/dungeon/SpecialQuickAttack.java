@@ -22,4 +22,10 @@ public class SpecialQuickAttack implements Special {
         System.out.printf("%s swipes at %s!%n", actor.getName(), target.getName());
         target.subtractHitPoints(damage * this.uses);
     }
+    
+    public int getUses()
+    {
+    	// Exists so unit test can validate increase
+    	return this.uses;
+    }
 }

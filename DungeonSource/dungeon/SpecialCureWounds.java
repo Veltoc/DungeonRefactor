@@ -5,7 +5,7 @@ public class SpecialCureWounds implements Special {
     private int minHealth;
     private int maxHealth;
 
-    SpecialCureWounds(int min, int max) {
+    public SpecialCureWounds(int min, int max) {
         this.minHealth = min;
         this.maxHealth = max;
     }

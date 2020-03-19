@@ -1,7 +1,7 @@
 package dungeon;
 
-class CharacterCreator {
-    static Hero createHero(String hero) {
+public class CharacterCreator {
+    public static Hero createHero(String hero) {
         int hp;
         double blockChance;
         String attackType;
@@ -53,7 +53,7 @@ class CharacterCreator {
             attackType, warcry, special);
     }
 
-    static Monster createMonster(String monster) {
+    public static Monster createMonster(String monster) {
         String name;
         int hp;
         double healChance;

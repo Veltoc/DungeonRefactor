@@ -1,6 +1,6 @@
 package dungeon;
 
-class Monster
+public class Monster
 extends DungeonCharacter
 {
     private static final long serialVersionUID = 1L;
@@ -9,7 +9,7 @@ extends DungeonCharacter
     private int minHeal;
     private int maxHeal;
     
-    Monster(String name, int hitPoints,
+    public Monster(String name, int hitPoints,
         double chanceToHeal, int minHeal, int maxHeal,
         String attackType, String warcry)
     {
@@ -32,5 +32,23 @@ extends DungeonCharacter
     {
         super.subtractHitPoints(hitPoints);
         heal();
+    }
+    
+    public double getBlockChance()
+    {
+    	// Exists so unit tests can validate stats
+    	return this.chanceToHeal;
+    }
+    
+    public int getMinHeal()
+    {
+    	// Exists so unit tests can validate stats
+    	return this.minHeal;
+    }
+    
+    public int getMaxHeal()
+    {
+    	// Exists so unit tests can validate stats
+    	return this.maxHeal;
     }
 }

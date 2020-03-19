@@ -1,7 +1,7 @@
 package dungeon;
 import java.util.Scanner;
 
-class Hero
+public class Hero
 extends DungeonCharacter
 {
     private static final long serialVersionUID = 1L;
@@ -16,7 +16,7 @@ extends DungeonCharacter
     private int pillarsFound;
     private int visionRadius;
     
-    Hero(int hitPoints, double chanceToBlock,
+    public Hero(int hitPoints, double chanceToBlock,
         String attackType, String warcry, Special special)
     {
         super(null, hitPoints, attackType, warcry);
@@ -163,5 +163,17 @@ extends DungeonCharacter
             if (numTurns > 0 && opponent.isAlive())
                 System.out.println("Number of turns remaining is: " + numTurns);
         }
+    }
+    
+    public double getBlockChance()
+    {
+        // Exists so unit tests can validate stats
+        return this.chanceToBlock;
+    }
+    
+    public Special getSpecial()
+    {
+        // Exists so unit tests can validate stats
+        return this.special;
     }
 }

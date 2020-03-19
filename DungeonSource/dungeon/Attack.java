@@ -36,6 +36,12 @@ implements Serializable
 		}
 	}
 	
+	public static Attack[] getAttackTypes()
+	{
+		// Exists so unit tests can test flyweight works
+		return ATTACKS;
+	}
+	
 	public void doAttack(DungeonCharacter actor, DungeonCharacter target)
 	{
 		if (Math.random() <= this.hitChance) {
