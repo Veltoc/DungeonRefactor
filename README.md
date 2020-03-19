@@ -1,3 +1,63 @@
+# Dungeon Adventure
+Extra credit(save) was done, all Mathews
+Rooms looks like this: 
+╔═╗
+║I 
+╚ ╝
+where ' ' are doorways; ║, ═ being walls, and ╚,╝,╔,╗, being corners. Gives a better feel to the dungeon
+- M - Multiple Items 
+- P - Pit 
+- I - Entrance (In)
+- O - Exit (Out)
+- V - Vision Potion 
+- H - Healing Potion 
+- § - OO Pillar
+- E - Empty Room 
+- X - Monster
+You can drink potions with 'drink' followed by 'V' or 'vision' for a vision potion and 'H' or 'health' for health potion
+For example, 'drink health'. this works with any combination so long as the first letter h. if this project were to be expanded that would need to be more strict
+You can move with 'move' followed by the direction using the first letter or the full name of the cardinal direction. For example, 'move north'.
+You will only be able to move outside of combat.
+'admin' will give the user a vision and health potion while also giving the full dungeon
+Dungeon is modular, messing with XSIZE and YSIZE in the code can allow the changing of the size of the dungeon.
+
+
+# work distribution:
+Room: Mason for general requirements, cleaned up by Matthew
+Hero: Mason then Matthew made the getvision to track potion use
+Dungeon: Mason, altered by Matthew to adhere to what he changed with room as well as cleaning up code
+DungeonAdventure: mason, Matthew cleaned up, redid move except for the contents case loop. Mathew also did the extra credit required for saving and added the extra monsters
+Dungeon character: Matthew added 2 new monsters and 2 new heros
+SpecialExplosion: Matthew, for a new hero Alchemist
+SpecialQuickAttack: Matthew, for new hero Duelist
+Attack: all Matthew
+Tests:
+DungeonAdventureTests: Mason
+DungeonCharacterTests: Mason
+DungeonTests: Mason
+HeroTests: Mason
+MonsterTests: Mason
+RoomTests: Mason
+AttackTest: Matthew
+CreatorTest: Matthew
+SpecialTest: Matthew
+
+# Additional specifications:
+1. Matthew as part of dungeon refractor assignement
+2. Matthew
+3. Matthew
+4. Matthew
+5. Mason
+6. Matthew
+
+UML: Matthew
+
+Instead of splitting workload by class, due to conflicting schedules Mason got the primary project running with the exception of most of the extras such as attack and extra characters. Matthew cleaned it up, fixed a couple missed bugs and completed the additional specifications as well as UML and showing output
+
+Note on tests: Due to the randomizing nature of this project we are limited on tests. Furthermore our abstraction had to be broken to test what little we could, those cases are noted. THE UML DOES NOT REFLECT THIS
+
+Below is previous assignment
+
 # DungeonRefactor
 - (V) Refactor #1: Each class (except thief) overrode attack just to print a line, pushed that up and passed the line at construction to DungeonCharacter to call.
 For example, 
