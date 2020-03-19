@@ -2,7 +2,7 @@ package dungeon;
 
 import java.io.Serializable;
 
-abstract class DungeonCharacter
+public abstract class DungeonCharacter
 implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -12,7 +12,7 @@ implements Serializable
     private Attack attack;
     private String warcry;
     
-    public DungeonCharacter(String name, int hitPoints,
+    public DungeonCharacter(String name, int hitPoints,//made public to test
       String attackType, String warcry)
     {
         this.name = name;
@@ -71,16 +71,14 @@ implements Serializable
         return this.attack.getAttackSpeed();
     }
     
-    public String getWarcry()
+    protected String getWarcry()
     {
-        // Public so unit test can validate stats
         return this.warcry;
     }
     
-    public Attack getAttack()
+    protected Attack getAttack()
     {
-        // Public so unit test can validate stats
-        return this.attack;
+    	return this.attack;
     }
     
     protected void setAttack(Attack atk)

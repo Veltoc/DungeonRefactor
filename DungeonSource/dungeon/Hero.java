@@ -1,8 +1,7 @@
 package dungeon;
 import java.util.Scanner;
 
-public class Hero
-extends DungeonCharacter
+public class Hero extends DungeonCharacter//made public to unit test
 {
     private static final long serialVersionUID = 1L;
     private static Scanner keyboard = new Scanner(System.in);
@@ -17,7 +16,7 @@ extends DungeonCharacter
     private int visionRadius;
     
     public Hero(int hitPoints, double chanceToBlock,
-        String attackType, String warcry, Special special)
+                String attackType, String warcry, Special special)
     {
         super(null, hitPoints, attackType, warcry);
         
@@ -80,7 +79,14 @@ extends DungeonCharacter
     {
         return this.visionRadius;
     }
-    
+    public int getHealthPotions()
+    {
+        return healthPotions;
+    }
+    public int getVisionPotions()
+    {
+        return visionPotions;
+    }
     public void resetVision()
     {
         this.visionRadius = 0;
@@ -163,17 +169,5 @@ extends DungeonCharacter
             if (numTurns > 0 && opponent.isAlive())
                 System.out.println("Number of turns remaining is: " + numTurns);
         }
-    }
-    
-    public double getBlockChance()
-    {
-        // Exists so unit tests can validate stats
-        return this.chanceToBlock;
-    }
-    
-    public Special getSpecial()
-    {
-        // Exists so unit tests can validate stats
-        return this.special;
     }
 }
